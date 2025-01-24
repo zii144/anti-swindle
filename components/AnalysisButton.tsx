@@ -39,8 +39,7 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
   };
 
   const sendToOpenAI = async (content: string) => {
-    const apiKey =
-      "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";
+    const apiKey = "";
 
     try {
       const response = await fetch(
