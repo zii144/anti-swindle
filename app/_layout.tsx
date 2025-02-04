@@ -1,5 +1,4 @@
 import { Stack } from "expo-router";
-import { View, StyleSheet } from "react-native";
 
 export default function RootLayout() {
   return (
@@ -9,10 +8,3 @@ export default function RootLayout() {
     </Stack>
   );
 }
-
-const styles = StyleSheet.create({
-  screenContent: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-  },
-});

@@ -1,18 +1,47 @@
-import { View, StyleSheet, Text } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { View, StyleSheet, Text, Pressable } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Index() {
   return (
     <View style={styles.container}>
-      <LinearGradient
-        // Background Linear Gradient
-        colors={["rgba(0,0,0,0.8)", "transparent"]}
-      />
-      <LinearGradient
-        // Button Linear Gradient
-        colors={["#4c669f", "#2b5998", "#192f6a"]}
-        style={styles.button}
-      ></LinearGradient>
+      <View style={styles.tierCard}>
+        <Ionicons
+          name="star"
+          size={24}
+          color="orange"
+          style={{ alignSelf: "center" }}
+        />
+        <View>
+          <Text style={{ fontSize: 18 }}>永久免費</Text>
+          <Text style={{ fontSize: 14, marginTop: 5, color: "gray" }}>
+            為防止詐騙盡一份力
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.settingContentContainer}>
+        <Pressable style={styles.settingContentCard}>
+          <Ionicons name="chatbox-ellipses" size={24} color="#007bff" />
+          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+            提供意見
+          </Text>
+          <Ionicons name="chevron-forward" size={24} color="gray" />
+        </Pressable>
+        <Pressable style={styles.settingContentCard}>
+          <Ionicons name="cafe" size={24} color="#007bff" />
+          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+            請我喝杯咖啡
+          </Text>
+          <Ionicons name="chevron-forward" size={24} color="gray" />
+        </Pressable>
+        <Pressable style={styles.settingContentCard}>
+          <Ionicons name="person-circle" size={24} color="#007bff" />
+          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+            聯絡開發者
+          </Text>
+          <Ionicons name="chevron-forward" size={24} color="gray" />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -21,25 +50,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    paddingVertical: 20,
   },
-  background: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    height: 300,
-  },
-  button: {
+  tierCard: {
+    flexDirection: "row",
+    gap: 10,
+    backgroundColor: "#FFFED8",
     padding: 15,
-    alignItems: "center",
-    borderRadius: 5,
-    width: 250,
-    height: 50,
+    borderRadius: 10,
+    width: "90%",
   },
-  text: {
-    backgroundColor: "transparent",
-    fontSize: 15,
-    color: "#fff",
+  settingContentContainer: {
+    alignItems: "center",
+    paddingVertical: 30,
+  },
+  settingContentCard: {
+    flexDirection: "row",
+    gap: 10,
+
+    padding: 10,
+    borderRadius: 10,
+    width: "90%",
+    alignContent: "center",
   },
 });

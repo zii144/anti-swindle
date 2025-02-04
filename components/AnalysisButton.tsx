@@ -39,7 +39,8 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
   };
 
   const sendToOpenAI = async (content: string) => {
-    const apiKey = "";
+    const apiKey =
+      "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";
 
     try {
       const response = await fetch(
@@ -70,14 +71,11 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
         Alert.alert("Response from OpenAI", data.choices[0].message.content);
         console.log(data);
       } else {
-        Alert.alert("Error", "No response from OpenAI.");
+        Alert.alert("失敗", "無法從 OpenAI 取得回應");
       }
     } catch (error) {
-      console.error("Error sending file to OpenAI:", error);
-      Alert.alert(
-        "Error",
-        "An error occurred while sending the file to OpenAI."
-      );
+      console.error("失敗", error);
+      Alert.alert("失敗", "無法與 OpenAI 進行通訊，請檢查網路連線或稍後再試");
     }
   };
 
