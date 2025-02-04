@@ -20,27 +20,31 @@ export default function Index() {
       </View>
 
       <View style={styles.settingContentContainer}>
-        <Pressable style={styles.settingContentCard}>
-          <Ionicons name="chatbox-ellipses" size={24} color="#007bff" />
-          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
-            提供意見
-          </Text>
-          <Ionicons name="chevron-forward" size={24} color="gray" />
-        </Pressable>
-        <Pressable style={styles.settingContentCard}>
-          <Ionicons name="cafe" size={24} color="#007bff" />
-          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
-            請我喝杯咖啡
-          </Text>
-          <Ionicons name="chevron-forward" size={24} color="gray" />
-        </Pressable>
-        <Pressable style={styles.settingContentCard}>
-          <Ionicons name="person-circle" size={24} color="#007bff" />
-          <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
-            聯絡開發者
-          </Text>
-          <Ionicons name="chevron-forward" size={24} color="gray" />
-        </Pressable>
+        <View
+          style={{ backgroundColor: "white", borderRadius: 10, padding: 5 }}
+        >
+          <Pressable style={styles.settingContentCard}>
+            <Ionicons name="chatbox-ellipses" size={24} color="#007bff" />
+            <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+              提供意見
+            </Text>
+            <Ionicons name="chevron-forward" size={24} color="gray" />
+          </Pressable>
+          <Pressable style={styles.settingContentCard}>
+            <Ionicons name="cafe" size={24} color="#007bff" />
+            <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+              請我喝杯咖啡
+            </Text>
+            <Ionicons name="chevron-forward" size={24} color="gray" />
+          </Pressable>
+          <Pressable style={styles.settingContentCard}>
+            <Ionicons name="person-circle" size={24} color="#007bff" />
+            <Text style={{ fontSize: 18, alignSelf: "center", flex: 1 }}>
+              聯絡開發者
+            </Text>
+            <Ionicons name="chevron-forward" size={24} color="gray" />
+          </Pressable>
+        </View>
       </View>
     </View>
   );
