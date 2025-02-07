@@ -1,6 +1,4 @@
 import { View, StyleSheet, Dimensions, ScrollView, Image } from "react-native";
-import { Card } from "../../components/Card";
-import RecentCheck from "@/components/RecentCheck";
 import AnalysisButton from "@/components/AnalysisButton";
 
 export default function Index() {
