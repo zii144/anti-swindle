@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -117,6 +117,16 @@ export default function Index() {
           </BlurView>
         </View>
       </Modal>
+      <Text
+        style={{
+          position: "absolute",
+          bottom: 10,
+          fontSize: 10,
+        }}
+      >
+        {" "}
+        版本: 0.0.1
+      </Text>
     </View>
   );
 }
@@ -125,19 +135,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   tierCard: {
     flexDirection: "row",
     gap: 10,
-    backgroundColor: "#FFFED8",
+    backgroundColor: "#FFF9C9",
     padding: 15,
     borderRadius: 10,
     width: "90%",
   },
   settingContentContainer: {
     alignItems: "center",
-    paddingVertical: 30,
+    paddingVertical: 10,
   },
   settingContentCard: {
     flexDirection: "row",
@@ -192,16 +202,17 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.2)",
   },
   blurBackground: {
     position: "absolute",
     width: "100%",
     height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalBox: {
-    alignSelf: "center",
-    marginVertical: 200,
     width: 280,
     backgroundColor: "rgba(255,255,255,0.85)",
     padding: 20,
