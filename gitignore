@@ -1,0 +1,42 @@
+# 🛑 Ignore node_modules (Dependency files)
+node_modules/
+
+# 🛑 Ignore Expo build and cache files
+.expo/
+.expo-shared/
+dist/
+build/
+web-build/
+.cache/
+
+# 🛑 Ignore environment variables (Secret keys)
+.env
+.env.production
+.env.development
+env.d.ts
+
+# 🛑 Ignore logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# 🛑 Ignore system files (MacOS, Windows, Linux)
+.DS_Store
+Thumbs.db
+
+# 🛑 Ignore IDE and editor settings
+.vscode/
+.idea/
+*.swp
+
+# 🛑 Ignore Metro Bundler cache
+metro-cache/
+
+# 🛑 Ignore Expo-specific config files that should not be committed
+.expo/
+.expo-shared/
+
+# 🛑 Ignore Git-related files
+.git/
+.gitignore

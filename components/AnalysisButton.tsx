@@ -4,6 +4,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 
+import { Constants } from "expo-constants";
+import { API_KEY } from "@env";
+
 interface AnalysisButtonProps {
   screenWidth: number;
 }
@@ -48,7 +51,7 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${API_KEY}`,
           },
           body: JSON.stringify({
             model: "gpt-4o-mini",
