@@ -40,3 +40,4 @@ metro-cache/
 # 🛑 Ignore Git-related files
 .git/
 .gitignore
+.env
