@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
 
-import { Constants } from "expo-constants";
+import { API_URL } from "@env";
 import { API_KEY } from "@env";
 
 interface AnalysisButtonProps {
@@ -42,30 +42,25 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
   };
 
   const sendToOpenAI = async (content: string) => {
-    const apiKey = "";
-
     try {
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-          body: JSON.stringify({
-            model: "gpt-4o-mini",
-            messages: [
-              { role: "user", content },
-              {
-                role: "developer",
-                content:
-                  "只能親切地用繁體中文回應,協助用戶分析TXT文件，推測對話牽涉詐騙的可能性，最後需要列點式提出：1. 詐騙的可能性：高、中、低、未知2. 疑點：三個需要防範的地方3. 提防事項：兩項4. 詐騙可能百分比5. 其他建議",
-              },
-            ],
-          }),
-        }
-      );
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [
+            { role: "user", content },
+            {
+              role: "developer",
+              content:
+                "只能親切地用繁體中文回應,協助用戶分析TXT文件，推測對話牽涉詐騙的可能性，最後需要列點式提出：1. 詐騙的可能性：高、中、低、未知2. 疑點：三個需要防範的地方3. 提防事項：兩項4. 詐騙可能百分比5. 其他建議",
+            },
+          ],
+        }),
+      });
 
       const data = await response.json();
 
