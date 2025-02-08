@@ -1,5 +1,14 @@
 import { useState } from "react";
-import { View, Text, Button, StyleSheet, Alert, Pressable } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  Alert,
+  Pressable,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system";
@@ -13,6 +22,7 @@ interface AnalysisButtonProps {
 
 export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
   const [fileContent, setFileContent] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const selectFile = async () => {
     try {
@@ -20,6 +30,11 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
         type: "text/plain", // Only allow .txt files
         copyToCacheDirectory: true, // Ensure the file is accessible in the cache directory
       });
+
+      if (result.canceled || !result.assets || result.assets.length === 0) {
+        Alert.alert("失敗", "上傳動作已取消");
+        return;
+      }
 
       if (result) {
         const content = await FileSystem.readAsStringAsync(
@@ -42,6 +57,7 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
   };
 
   const sendToOpenAI = async (content: string) => {
+    setLoading(true);
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -62,6 +78,12 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
         }),
       });
 
+      if (!response.ok) {
+        throw new Error(
+          `API 回應錯誤: ${response.status} ${response.statusText}`
+        );
+      }
+
       const data = await response.json();
 
       if (data.choices && data.choices[0].message) {
@@ -73,6 +95,8 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
     } catch (error) {
       console.error("失敗", error);
       Alert.alert("失敗", "無法與 OpenAI 進行通訊，請檢查網路連線或稍後再試");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -81,9 +105,17 @@ export default function AnalysisButton({ screenWidth }: AnalysisButtonProps) {
       colors={["#f7ba2c", "#ea5459"]}
       style={[styles.button, { width: screenWidth * 0.9 }]}
     >
-      <Pressable onPress={() => selectFile()}>
-        <Text style={styles.buttonText}>上傳新的對話紀錄</Text>
-      </Pressable>
+      <TouchableOpacity
+        onPress={selectFile}
+        disabled={loading}
+        style={styles.buttonContent}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>上傳新的對話紀錄</Text>
+        )}
+      </TouchableOpacity>
     </LinearGradient>
   );
 }
@@ -98,6 +130,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  buttonContent: {},
   buttonText: {
     color: "#fff",
     fontSize: 20,
